@@ -49,7 +49,7 @@ dc_bias.py              สมการ DC bias + validation + region detection
 templates/index.html    ฟอร์มและตารางผลลัพธ์ (Jinja2)
 static/style.css        รูปแบบหน้าเว็บ
 tests/                  unittest
-docs/                   design note, validation log, reflection
+docs/                   design note, validation log, test log, reflection, screenshots
 ```
 
 ## Assumptions & limitations

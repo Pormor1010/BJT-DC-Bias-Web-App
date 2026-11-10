@@ -1,0 +1,24 @@
+test_nan_and_infinity_rejected (test_dc_bias.TestModuleInputCoercion.test_nan_and_infinity_rejected) ... ok
+test_non_numeric_string_rejected (test_dc_bias.TestModuleInputCoercion.test_non_numeric_string_rejected) ... ok
+test_cutoff_when_vth_below_vbe (test_dc_bias.TestOperatingRegion.test_cutoff_when_vth_below_vbe) ... ok
+test_region_active_no_warning (test_dc_bias.TestOperatingRegion.test_region_active_no_warning) ... ok
+test_saturation_warning (test_dc_bias.TestOperatingRegion.test_saturation_warning) ... ok
+test_reference_operating_point (test_dc_bias.TestReferenceOperatingPoint.test_reference_operating_point) ... ok
+test_invalid_vcc_and_beta_rejected (test_dc_bias.TestValidation.test_invalid_vcc_and_beta_rejected) ... ok
+test_vbe_must_be_below_vcc (test_dc_bias.TestValidation.test_vbe_must_be_below_vcc) ... ok
+test_zero_and_negative_resistance_rejected (test_dc_bias.TestValidation.test_zero_and_negative_resistance_rejected) ... ok
+test_post_returns_computed_values (test_web.TestCalculate.test_post_returns_computed_values) ... ok
+test_form_labels_and_button_are_thai (test_web.TestDisplayAndLabels.test_form_labels_and_button_are_thai) ... ok
+test_ib_displayed_in_microamps (test_web.TestDisplayAndLabels.test_ib_displayed_in_microamps) ... ok
+test_region_is_shown_in_thai (test_web.TestDisplayAndLabels.test_region_is_shown_in_thai) ... ok
+test_vce_cell_has_value_and_unit (test_web.TestDisplayAndLabels.test_vce_cell_has_value_and_unit) ... ok
+test_warning_block_reaches_page (test_web.TestDisplayAndLabels.test_warning_block_reaches_page) ... ok
+test_get_index_shows_form (test_web.TestIndex.test_get_index_shows_form) ... ok
+test_missing_field_shows_error (test_web.TestInvalidInput.test_missing_field_shows_error) ... ok
+test_non_numeric_shows_error (test_web.TestInvalidInput.test_non_numeric_shows_error) ... ok
+test_zero_vcc_shows_error (test_web.TestInvalidInput.test_zero_vcc_shows_error) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.047s
+
+OK

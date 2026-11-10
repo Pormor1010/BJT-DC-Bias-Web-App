@@ -52,3 +52,18 @@ OK
 
 หมายเหตุ: ค่าที่แสดงในสองกรณีนี้มาจากสมการ Forward-Active เช่นเดิม ตามแนวทาง A
 ของ design note — ตัวเลขใช้ดูพฤติกรรมของสมการเท่านั้น ไม่ใช่ค่าที่เชื่อถือได้
+
+## 5. หลักฐานประกอบการส่ง
+
+รันเว็บด้วย `python -m flask --app app run --port 5000` แล้วจับภาพหน้าจอจริง
+จากเบราว์เซอร์ (ขนาดเต็มหน้า)
+
+| ไฟล์ | เนื้อหา |
+|---|---|
+| `docs/screenshots/01-form.jpeg` | หน้าแรก แสดงฟอร์ม 7 ช่อง พร้อมคำอธิบายภาษาไทยและปุ่ม "คำนวณ DC Bias" |
+| `docs/screenshots/02-result.jpeg` | ผลลัพธ์ค่าอ้างอิง: VB 1.942 V · VE 1.242 V · VC 9.294 V · VCE 8.052 V · IC 1.230 mA · IE 1.242 mA · IB 12.299 µA · Active (ทำงานปกติ) |
+| `docs/screenshots/03-invalid-input.jpeg` | กรอก VCC = 0 → แถบ error "ข้อผิดพลาด: VCC ต้องมากกว่า 0 V" (HTTP 200) |
+| `docs/screenshots/04-saturation-warning.jpeg` | ตั้ง RC = 47 kΩ → region = Saturation (อิ่มตัว) พร้อม warning |
+
+`docs/test-log.txt` เก็บผลรัน `python -m unittest discover -s tests -v`
+จากเครื่องที่พัฒนา (19 tests, OK) เพื่อใช้อ้างอิงคู่กับตารางข้อ 2
