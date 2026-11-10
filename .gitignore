@@ -19,6 +19,9 @@ htmlcov/
 .env.*
 *.key
 
+# Agent scratch (plan ledger)
+.superpowers/
+
 # Editor / OS
 .vscode/
 .idea/

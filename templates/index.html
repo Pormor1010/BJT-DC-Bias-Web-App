@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BJT DC Bias Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main>
+  <h1>BJT DC Bias Calculator</h1>
+  <p class="subtitle">วงจร Common-Emitter แบบ Voltage-Divider Bias — คำนวณด้วย Python Backend</p>
+
+  {% if error %}
+  <div class="alert error">{{ error }}</div>
+  {% endif %}
+
+  {% if warnings %}
+  <div class="alert warning">
+    <ul>
+      {% for w in warnings %}<li>{{ w }}</li>{% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <form method="post" action="/calculate">
+    <div class="grid">
+      <label>VCC [V] <span>แรงดันไฟเลี้ยง</span>
+        <input type="text" name="vcc" value="{{ form.vcc }}">
+      </label>
+      <label>R1 [kΩ] <span>ตัวต้านทานขา Base ด้านบน</span>
+        <input type="text" name="r1" value="{{ form.r1 }}">
+      </label>
+      <label>R2 [kΩ] <span>ตัวต้านทานขา Base ด้านล่าง</span>
+        <input type="text" name="r2" value="{{ form.r2 }}">
+      </label>
+      <label>RC [kΩ] <span>ตัวต้านทานขา Collector</span>
+        <input type="text" name="rc" value="{{ form.rc }}">
+      </label>
+      <label>RE [kΩ] <span>ตัวต้านทานขา Emitter</span>
+        <input type="text" name="re" value="{{ form.re }}">
+      </label>
+      <label>β (hFE) <span>อัตราขยายกระแสตรง</span>
+        <input type="text" name="beta" value="{{ form.beta }}">
+      </label>
+      <label>VBE [V] <span>แรงดัน Base–Emitter</span>
+        <input type="text" name="vbe" value="{{ form.vbe }}">
+      </label>
+    </div>
+    <button type="submit">คำนวณ DC Bias</button>
+  </form>
+
+  {% if result %}
+  <section class="results">
+    <h2>DC Bias Results</h2>
+    <table>
+      <tbody>
+        <tr><th>VB</th><td>{{ result.vb }} V</td></tr>
+        <tr><th>VE</th><td>{{ result.ve }} V</td></tr>
+        <tr><th>VC</th><td>{{ result.vc }} V</td></tr>
+        <tr><th>VCE</th><td>{{ result.vce }} V</td></tr>
+        <tr><th>IC</th><td>{{ result.ic }} mA</td></tr>
+        <tr><th>IE</th><td>{{ result.ie }} mA</td></tr>
+        <tr><th>IB</th><td>{{ result.ib }} µA</td></tr>
+        <tr><th>Operating Region</th><td>{{ result.region }}</td></tr>      </tbody>
+    </table>
+  </section>
+  {% endif %}
+</main>
+</body>
+</html>
