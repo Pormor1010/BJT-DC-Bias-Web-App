@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Flask / test artifacts
+instance/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets & local config
+.env
+.env.*
+*.key
+
+# Editor / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
