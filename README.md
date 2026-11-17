@@ -105,3 +105,9 @@ docs/                   design note, validation log, test log, reflection, scree
 - ปรับ `templates/index.html` ให้มี dropdown เลือกโหมดและซ่อนช่องที่ไม่ใช้
 - เขียน test ใหม่ก่อนแก้ production code และปรับ `docs/validation.md`
 - นักศึกษาตรวจสมการ เทียบค่ากับการคำนวณมือ และรันกรณี A1–A5 ผ่านเบราว์เซอร์เอง
+
+## ลิงก์ส่งงาน
+
+- GitHub: <https://github.com/Pormor1010/BJT-DC-Bias-Web-App>
+- Commit SHA ของงาน Lab 03: `9e43ed8` (feat(lab03): add fixed and emitter bias modes)
+
