@@ -9,10 +9,26 @@
 <body>
 <main>
   <h1>BJT DC Bias Calculator</h1>
-  <p class="subtitle">วงจร Common-Emitter แบบ Voltage-Divider Bias — คำนวณด้วย Python Backend</p>
+  <p class="subtitle">วงจร Common-Emitter — เลือกวงจรไบอัสแล้วคำนวณด้วย Python Backend</p>
+
+  <form method="get" action="/" class="mode-picker">
+    <label for="mode">โหมดวงจร
+      <select id="mode" name="mode">
+        {% for key, info in modes.items() %}
+        <option value="{{ key }}"{% if key == mode %} selected{% endif %}>{{ info.label }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <button type="submit" class="secondary">เปลี่ยนโหมด</button>
+  </form>
+
+  <p class="hint">{{ modes[mode].hint }}</p>
 
   {% if error %}
-  <div class="alert error">{{ error }}</div>
+  <div class="alert error">
+    <strong>โหมด: {{ modes[mode].label }}</strong>
+    <p>{{ error }}</p>
+  </div>
   {% endif %}
 
   {% if warnings %}
@@ -24,35 +40,29 @@
   {% endif %}
 
   <form method="post" action="/calculate">
+    <input type="hidden" name="mode" value="{{ mode }}">
     <div class="grid">
-      <label>VCC [V] <span>แรงดันไฟเลี้ยง</span>
-        <input type="text" name="vcc" value="{{ form.vcc }}">
+      {% for key in common_fields %}
+      <label>{{ fields[key].label }}{% if fields[key].unit %} [{{ fields[key].unit }}]{% endif %}
+        <span>{{ fields[key].hint }}</span>
+        <input type="text" name="{{ key }}" value="{{ form[key] }}">
       </label>
-      <label>R1 [kΩ] <span>ตัวต้านทานขา Base ด้านบน</span>
-        <input type="text" name="r1" value="{{ form.r1 }}">
+      {% endfor %}
+      {% for key in modes[mode].resistors %}
+      <label>{{ fields[key].label }}{% if fields[key].unit %} [{{ fields[key].unit }}]{% endif %}
+        <span>{{ fields[key].hint }}</span>
+        <input type="text" name="{{ key }}" value="{{ form[key] }}">
       </label>
-      <label>R2 [kΩ] <span>ตัวต้านทานขา Base ด้านล่าง</span>
-        <input type="text" name="r2" value="{{ form.r2 }}">
-      </label>
-      <label>RC [kΩ] <span>ตัวต้านทานขา Collector</span>
-        <input type="text" name="rc" value="{{ form.rc }}">
-      </label>
-      <label>RE [kΩ] <span>ตัวต้านทานขา Emitter</span>
-        <input type="text" name="re" value="{{ form.re }}">
-      </label>
-      <label>β (hFE) <span>อัตราขยายกระแสตรง</span>
-        <input type="text" name="beta" value="{{ form.beta }}">
-      </label>
-      <label>VBE [V] <span>แรงดัน Base–Emitter</span>
-        <input type="text" name="vbe" value="{{ form.vbe }}">
-      </label>
+      {% endfor %}
     </div>
+    <p class="hint">ตัวต้านทานกรอกเป็น kΩ (1 MΩ = 1,000 kΩ) — ระบบแปลงเป็น Ω ก่อนคำนวณ</p>
     <button type="submit">คำนวณ DC Bias</button>
   </form>
 
   {% if result %}
   <section class="results">
     <h2>DC Bias Results</h2>
+    <p class="mode-tag">โหมด: {{ modes[mode].label }}</p>
     <table>
       <tbody>
         <tr><th>VB</th><td>{{ result.vb }} V</td></tr>
@@ -62,7 +72,8 @@
         <tr><th>IC</th><td>{{ result.ic }} mA</td></tr>
         <tr><th>IE</th><td>{{ result.ie }} mA</td></tr>
         <tr><th>IB</th><td>{{ result.ib }} µA</td></tr>
-        <tr><th>Operating Region</th><td>{{ result.region }}</td></tr>      </tbody>
+        <tr><th>Operating Region</th><td>{{ result.region }}</td></tr>
+      </tbody>
     </table>
   </section>
   {% endif %}

@@ -1,6 +1,6 @@
 # AGENTS.md — กติกาสำหรับ AI coding agent
 
-โปรเจกต์: BJT DC Bias Web App (ENG29 2121 Lab 02)
+โปรเจกต์: BJT DC Bias Web App (ENG29 2121 Lab 02–03)
 
 ## สถาปัตยกรรม
 
